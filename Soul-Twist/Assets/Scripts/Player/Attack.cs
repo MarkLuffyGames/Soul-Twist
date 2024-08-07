@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class Attack : MonoBehaviour
+public class Attack : NetworkBehaviour
 {
     private PlayerController _playerController;
     private Animator _animator;
@@ -9,6 +10,7 @@ public class Attack : MonoBehaviour
     private InputAction attackAction;
     private void Start()
     {
+        if (!IsOwner) return;
         _playerController = GetComponent<PlayerController>();
         _animator = GetComponent<Animator>();
 

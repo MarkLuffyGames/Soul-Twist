@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class Interact : MonoBehaviour
+public class Interact : NetworkBehaviour
 {
     //Lista de objetos que el jugador puede recoger.
     [SerializeField] private List<CollectableItem> collectable = new List<CollectableItem>();
@@ -15,6 +17,7 @@ public class Interact : MonoBehaviour
 
     private void Start()
     {
+        if (!IsOwner) return;
         pickUpAction = InputSystem.actions.FindAction("Interact");
         pickUpAction.started += PickUpAction_started;
         uI = FindFirstObjectByType<UI>();

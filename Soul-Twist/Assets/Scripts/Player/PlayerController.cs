@@ -1,7 +1,9 @@
+using Unity.Cinemachine;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     [Header("Player")]
     [Tooltip("Velocidad de movimiento del personaje en m/s")]
@@ -74,8 +76,10 @@ public class PlayerController : MonoBehaviour
     private InputAction sprintAction;
 
 
-    private void Awake()
+    private void Start()
     {
+        if (!IsOwner) return;
+
         Application.targetFrameRate = 60;
 
         _characterController = GetComponent<CharacterController>();
@@ -86,6 +90,9 @@ public class PlayerController : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
 
         sprintAction.started += SprintAction_started;
+
+        FindFirstObjectByType<CinemachineCamera>().Target.TrackingTarget = transform;
+
     }
 
     private void SprintAction_started(InputAction.CallbackContext obj)
@@ -95,6 +102,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!IsOwner) return;
+
         GroundedCheck();
         JumpAndGravity();
         Move();
