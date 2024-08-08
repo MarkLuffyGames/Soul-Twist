@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f882a124acb2d4887a7ea90a9b7548, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  name: 1H_Sword
-  icon: {fileID: 0}
+  id: 0
+  objectName: Sword
+  description: 
+  objectPrefab: {fileID: 7485620933177394952, guid: 178b9f764c52bcb4890cbe70a1cd499b, type: 3}
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  objectPosition: {x: 0, y: 0, z: 0}
+  objectRotation: {x: 0, y: 0, z: 0}
+  objectType: 0
+  attackType: 1
+  attack: 10
+  defense: 0
+  spAttack: 0
+  spDefense: 0

@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6064862591185256266}
   - component: {fileID: 4604727614883847884}
+  - component: {fileID: 8719098542484162898}
   - component: {fileID: 6199996156172274533}
   - component: {fileID: 1731956951806147416}
   - component: {fileID: 6503402496938056481}
   - component: {fileID: 2023465727014405434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1H_Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,6 +45,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7976668141320910673}
   m_Mesh: {fileID: -8009583354884533670, guid: d2905282ec0c25047b8f1c0ed1ac81a3, type: 3}
+--- !u!114 &8719098542484162898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7976668141320910673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 4071303948
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &6199996156172274533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,6 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f648c0c778e5f1e479bff9a7a65ff75e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsCollected:
+    m_InternalValue: 0
   item: {fileID: 11400000, guid: 6b34d7919fe20f14289769272eaa0c74, type: 2}
 --- !u!23 &1731956951806147416
 MeshRenderer:

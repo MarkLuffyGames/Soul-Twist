@@ -2032,6 +2032,7 @@ GameObject:
   - component: {fileID: 7568460275050646401}
   - component: {fileID: 7852620917828652925}
   - component: {fileID: 525720617147727862}
+  - component: {fileID: 3814027197358316737}
   - component: {fileID: 1197558942652264842}
   - component: {fileID: 3751642592663606708}
   - component: {fileID: 9162074006355901067}
@@ -2162,6 +2163,56 @@ MonoBehaviour:
     m_Bits: 8
   canMove: 1
   canAttack: 1
+--- !u!114 &3814027197358316737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024141516318223820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c097eee3707c9409f208ea7b4a9d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemList:
+  - {fileID: 11400000, guid: 6b34d7919fe20f14289769272eaa0c74, type: 2}
+  mainHand: {fileID: 1606837157591947208}
+  secondHand: {fileID: 5553235915820618426}
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  mainHandSlot: {fileID: 0}
+  secondHandSlot: {fileID: 0}
+  uIInventory: {fileID: 0}
 --- !u!114 &1197558942652264842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2188,7 +2239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectable: []
   uI: {fileID: 0}
-  itemObtained: {fileID: 0}
 --- !u!136 &9162074006355901067
 CapsuleCollider:
   m_ObjectHideFlags: 0

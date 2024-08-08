@@ -122,7 +122,6 @@ public class PlayerController : NetworkBehaviour
         if (moveValue == Vector2.zero)
         {
             targetSpeed = 0.0f;
-            sprint = false;
         }
 
         //Guarda la magnitud de la velocidad del CharacterController.
@@ -193,11 +192,8 @@ public class PlayerController : NetworkBehaviour
             // Saltar
             if (jumpAction.IsPressed() && _jumpTimeoutDelta <= 0.0f)
             {
-                // la raíz cuadrada de H * -2 * G = cuánta velocidad se necesita para alcanzar la altura deseada
-                _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
                 // Actualizar Animator si se usa el personaje
-                _animator.SetBool("Jump", true);
+                //_animator.SetBool("Jump", true);
             }
 
             // Tiempo de espera de salto
@@ -230,6 +226,8 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
+    
+
     private void GroundedCheck()
     {
         // Establecer la posición de la esfera, con  compensacion
@@ -239,6 +237,13 @@ public class PlayerController : NetworkBehaviour
             QueryTriggerInteraction.Ignore);
 
         _animator.SetBool("Grounded", Grounded);
+    }
+
+    private void OnJump(AnimationEvent animationEvent)
+    {
+        // la raíz cuadrada de H * -2 * G = cuánta velocidad se necesita para alcanzar la altura deseada
+        _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+        Debug.Log("OnJump");
     }
 
     private void OnFreeFall(AnimationEvent animationEvent)
