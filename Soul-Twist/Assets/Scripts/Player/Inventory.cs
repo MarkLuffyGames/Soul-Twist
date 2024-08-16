@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class Inventory : NetworkBehaviour
@@ -24,6 +25,9 @@ public class Inventory : NetworkBehaviour
     public Item SecondHandSlot => secondHandSlot;
     public Item[] Slots => slots;
 
+
+    private InputAction menuAction;
+
     private void Start()
     {
         atacar = GetComponent<Attack>();
@@ -34,13 +38,22 @@ public class Inventory : NetworkBehaviour
             {
                 uIInventory = FindFirstObjectByType<UIInventory>();
                 uIInventory.playerInventory = this;
+
+
+                menuAction = InputSystem.actions.FindAction("Menu");
+                menuAction.started += MenuAction_started;
             }
             
         }
-        
 
-        if (mainHandSlot != null)SetMainWeapon(mainHandSlot);
-        if(secondHandSlot != null)SetSecondWeapon(secondHandSlot);
+
+        if (mainHandSlot != null) SpawnMainWeaponRpc(mainHandSlot.ID);
+        if (secondHandSlot != null) SpawnSecondWeaponRpc(secondHandSlot.ID);
+    }
+
+    private void MenuAction_started(InputAction.CallbackContext obj)
+    {
+        uIInventory.ShowAndHideInventory();
     }
 
     public void GetObject(int obtainedObjectId)
@@ -49,15 +62,15 @@ public class Inventory : NetworkBehaviour
 
         if (mainHandSlot == null && obtainedObject.ObjectType == ObjectType.Sword)
         {
-            SetMainWeapon(obtainedObject);
+            SpawnMainWeaponRpc(obtainedObject.ID);
         }
         else if(secondHandSlot == null && obtainedObject.ObjectType == ObjectType.Shield)
         {
-            SetSecondWeapon(obtainedObject);
+            SpawnSecondWeaponRpc(obtainedObject.ID);
         }
         else if (mainHandSlot != null && secondHandSlot == null && obtainedObject.ObjectType == ObjectType.Sword)
         {
-            SetSecondWeapon(obtainedObject);
+            SpawnSecondWeaponRpc(obtainedObject.ID);
         }
         else
         {
@@ -80,27 +93,40 @@ public class Inventory : NetworkBehaviour
         if(IsOwner)uIInventory.UpdateInventory();
     }
 
-    public void SetMainWeapon(Item weapon)
+    [Rpc(SendTo.Server)]
+    private void SpawnMainWeaponRpc(int itemId)
     {
-        mainHandSlot = weapon;
-        var intance = Instantiate(weapon.ObjectPrefab, 
-            mainHand.transform.position, mainHand.transform.rotation, mainHand.transform);
-        intance.transform.localPosition += weapon.ObjectPosition;
-        intance.transform.localRotation = Quaternion.Euler(weapon.ObjectRotation);
-
-        //atacar._collider = intance.GetComponent<BoxCollider>();
-
-        if(playerController != null)playerController.canAttack = true;
+        SetMainWeaponRpc(itemId);
     }
 
-    public void SetSecondWeapon(Item weapon)
+    [Rpc(SendTo.ClientsAndHost)]
+    void SetMainWeaponRpc(int itemId)
     {
-        secondHandSlot = weapon;
-        var intance = Instantiate(weapon.ObjectPrefab,
-            secondHand.transform.position, secondHand.transform.rotation, secondHand.transform);
-        intance.transform.localPosition += weapon.ObjectPosition;
+        mainHandSlot = GetObjectFromId(itemId);
 
-        if (weapon.ObjectType == ObjectType.Sword)
+        var intance = Instantiate(mainHandSlot.ObjectPrefab,
+                    mainHand.transform.position, mainHand.transform.rotation, mainHand.transform);
+        intance.transform.localPosition += mainHandSlot.ObjectPosition;
+        intance.transform.localRotation = Quaternion.Euler(mainHandSlot.ObjectRotation);
+
+        //atacar._collider = intance.GetComponent<BoxCollider>();
+    }
+
+    [Rpc(SendTo.Server)]
+    private void SpawnSecondWeaponRpc(int itemId)
+    {
+        SetSecondWeaponRpc(itemId);
+    }
+    public void SetSecondWeaponRpc(int itemId)
+    {
+        secondHandSlot = GetObjectFromId(itemId);
+
+        var intance = Instantiate(secondHandSlot.ObjectPrefab,
+            secondHand.transform.position, secondHand.transform.rotation, secondHand.transform);
+        intance.transform.localPosition += secondHandSlot.ObjectPosition;
+        intance.transform.localRotation = Quaternion.Euler(mainHandSlot.ObjectRotation);
+
+        if (secondHandSlot.ObjectType == ObjectType.Sword)
         {
             //atacar._collider = intance.GetComponent<BoxCollider>();
         }

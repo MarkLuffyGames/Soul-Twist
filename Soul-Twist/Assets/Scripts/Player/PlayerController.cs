@@ -75,12 +75,15 @@ public class PlayerController : NetworkBehaviour
     private InputAction jumpAction;
     private InputAction sprintAction;
 
+    Camera mainCamera;
+    [SerializeField] Transform targetCamera;
+
 
     private void Start()
     {
         if (!IsOwner) return;
 
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
@@ -92,7 +95,7 @@ public class PlayerController : NetworkBehaviour
         sprintAction.started += SprintAction_started;
 
         FindFirstObjectByType<CinemachineCamera>().Target.TrackingTarget = transform;
-
+        mainCamera = Camera.main;
     }
 
     private void SprintAction_started(InputAction.CallbackContext obj)
@@ -150,8 +153,8 @@ public class PlayerController : NetworkBehaviour
         // Si hay una entrada de movimiento, gire al jugador cuando el jugador se esté moviendo
         if (moveValue != Vector2.zero)
         {
-            _targetRotation = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg /*+
-                              forwardReference.transform.eulerAngles.y*/;
+            _targetRotation = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg +
+                              mainCamera.transform.eulerAngles.y;
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                 RotationSmoothTime);
 

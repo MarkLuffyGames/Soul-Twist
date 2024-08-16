@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
@@ -11,8 +12,25 @@ public class UIInventory : MonoBehaviour
     [SerializeField] Image secondHandIcon;
     [SerializeField] GameObject inventoryUI;
 
+    private InputActionMap playerActionMap;
+
     private void Start()
     {
+        playerActionMap = InputSystem.actions.FindActionMap("Player");
+    }
+
+    public void ShowAndHideInventory()
+    {
+        if (inventoryUI.activeInHierarchy)
+        {
+            inventoryUI.SetActive(false);
+            playerActionMap.Enable();
+        }
+        else
+        {
+            inventoryUI.SetActive(true);
+            playerActionMap.Disable();
+        }
     }
 
     public void UpdateInventory()
