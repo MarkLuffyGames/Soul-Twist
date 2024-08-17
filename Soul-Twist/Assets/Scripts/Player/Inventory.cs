@@ -146,4 +146,14 @@ public class Inventory : NetworkBehaviour
         Debug.LogError("El objeto no esta agragado a la lista en el inventario");
         return null;
     }
+
+    public AttackType GetAttackType()
+    {
+        if(MainHandSlot != null)
+        {
+            return MainHandSlot.AttackType;
+        }
+
+        return AttackType.Unarmed;
+    }
 }

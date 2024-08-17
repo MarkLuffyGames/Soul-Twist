@@ -44,6 +44,6 @@ public enum ObjectType
 
 public enum AttackType
 {
-    None, Sword_1H, Sword_2H
+    Unarmed, Sword_1H, Sword_2H
 }
 

@@ -14,6 +14,8 @@ public class Interact : NetworkBehaviour
     [SerializeField] private UI uI;// Referencia a la UI de jugador.
     [SerializeField] private Door door;
 
+    private Animator _animator;
+
     private InputAction interactAction;
 
     private void Start()
@@ -39,6 +41,7 @@ public class Interact : NetworkBehaviour
         interactAction.performed += InteractAction_performed;
         uI = FindFirstObjectByType<UI>();
         uI.interact = this;
+        _animator = GetComponent<Animator>();
     }
 
     private void InteractAction_performed(InputAction.CallbackContext Context)
@@ -75,6 +78,7 @@ public class Interact : NetworkBehaviour
         {
             uI.HideCollectButton();
             uI.ShowCollectableItemUi(collectable);
+            //Animacion de recoger objetos.
         }
     }
 

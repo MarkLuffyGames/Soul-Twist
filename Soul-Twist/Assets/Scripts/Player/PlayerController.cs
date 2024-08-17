@@ -257,10 +257,5 @@ public class PlayerController : NetworkBehaviour
     {
         canMove = true;
     }
-    private void OnFinishAttack(AnimationEvent animationEvent)
-    {
-        canMove = true;
-        canAttack = true;
-    }
 }
 
