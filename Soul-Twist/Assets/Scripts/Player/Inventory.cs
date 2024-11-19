@@ -18,7 +18,7 @@ public class Inventory : NetworkBehaviour
     [SerializeField] Item secondHandSlot;
     [SerializeField] UIInventory uIInventory;
 
-    Attack atacar;
+    Combat combat;
     PlayerController playerController;
 
     public Item MainHandSlot => mainHandSlot;
@@ -30,7 +30,7 @@ public class Inventory : NetworkBehaviour
 
     private void Start()
     {
-        atacar = GetComponent<Attack>();
+        combat = GetComponent<Combat>();
         playerController = GetComponent<PlayerController>();
         if(playerController != null)
         {
@@ -109,7 +109,8 @@ public class Inventory : NetworkBehaviour
         intance.transform.localPosition += mainHandSlot.ObjectPosition;
         intance.transform.localRotation = Quaternion.Euler(mainHandSlot.ObjectRotation);
 
-        //atacar._collider = intance.GetComponent<BoxCollider>();
+        combat.weaponCollider = intance.GetComponent<BoxCollider>();
+        intance.GetComponent<Hit>()._healt = GetComponent<Healt>();
     }
 
     [Rpc(SendTo.Server)]
@@ -117,6 +118,8 @@ public class Inventory : NetworkBehaviour
     {
         SetSecondWeaponRpc(itemId);
     }
+
+    [Rpc(SendTo.ClientsAndHost)]
     public void SetSecondWeaponRpc(int itemId)
     {
         secondHandSlot = GetObjectFromId(itemId);
@@ -124,14 +127,17 @@ public class Inventory : NetworkBehaviour
         var intance = Instantiate(secondHandSlot.ObjectPrefab,
             secondHand.transform.position, secondHand.transform.rotation, secondHand.transform);
         intance.transform.localPosition += secondHandSlot.ObjectPosition;
-        intance.transform.localRotation = Quaternion.Euler(mainHandSlot.ObjectRotation);
+        intance.transform.localRotation = Quaternion.Euler(secondHandSlot.ObjectRotation);
 
         if (secondHandSlot.ObjectType == ObjectType.Sword)
         {
-            //atacar._collider = intance.GetComponent<BoxCollider>();
+            combat.weaponCollider = intance.GetComponent<BoxCollider>();
+            intance.GetComponent<Hit>()._healt = GetComponent<Healt>();
         }
-
-        //if (playerController != null) playerController.canDefend = true;
+        else if(secondHandSlot.ObjectType == ObjectType.Shield)
+        {
+            if (playerController != null) playerController.canBlock = true;
+        }
     }
 
     private Item GetObjectFromId(int id)
@@ -155,5 +161,15 @@ public class Inventory : NetworkBehaviour
         }
 
         return AttackType.Unarmed;
+    }
+
+    public int GetAttackNumber()
+    {
+        if (MainHandSlot != null)
+        {
+            return MainHandSlot.AttackNumber;
+        }
+
+        return 3;
     }
 }

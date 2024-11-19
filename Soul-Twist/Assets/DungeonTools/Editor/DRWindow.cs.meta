@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 24052152cb058df4284b5d619fe73f95
+timeCreated: 1442770048
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Editor/DRWindow.cs
+  uploadId: 85214

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fe97f8de27cd25a49ae17c5a81f36e97
+timeCreated: 1444575732
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Docs/References.pdf
+  uploadId: 85214

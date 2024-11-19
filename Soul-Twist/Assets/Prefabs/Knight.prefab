@@ -2032,6 +2032,7 @@ GameObject:
   - component: {fileID: 7568460275050646401}
   - component: {fileID: 7852620917828652925}
   - component: {fileID: 525720617147727862}
+  - component: {fileID: 5611685582623879793}
   - component: {fileID: 3814027197358316737}
   - component: {fileID: 1197558942652264842}
   - component: {fileID: 3751642592663606708}
@@ -2163,6 +2164,21 @@ MonoBehaviour:
     m_Bits: 8
   canMove: 1
   canAttack: 1
+  canBlock: 0
+  target: {fileID: 0}
+  targetCamera: {fileID: 0}
+--- !u!114 &5611685582623879793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7024141516318223820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95617c64df56aae4c827b25255128477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3814027197358316737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,6 +2193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemList:
   - {fileID: 11400000, guid: 6b34d7919fe20f14289769272eaa0c74, type: 2}
+  - {fileID: 11400000, guid: c2fa3e278689df1479b495643c9154ee, type: 2}
   mainHand: {fileID: 1606837157591947208}
   secondHand: {fileID: 5553235915820618426}
   slots:
@@ -2225,6 +2242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456c3a2393b1b214582680a66d97de71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponCollider: {fileID: 0}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  colliders: []
+  healtList: []
 --- !u!114 &3751642592663606708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,6 +2262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectable: []
   uI: {fileID: 0}
+  door: {fileID: 0}
 --- !u!136 &9162074006355901067
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2309,10 +2333,17 @@ MonoBehaviour:
   - IsCrossFadeExit: 0
     Layer: 0
     OriginatingState: 1326225478
-    DestinationState: 734159996
+    DestinationState: 1080829965
     TransitionDuration: 0.25
-    TriggerNameHash: 1594286156
+    TriggerNameHash: 1080829965
     TransitionIndex: 2
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1326225478
+    DestinationState: 512163255
+    TransitionDuration: 0.25
+    TriggerNameHash: 1654612129
+    TransitionIndex: 4
   m_Animator: {fileID: 7568460275050646401}
 --- !u!1 &7224548406875665999
 GameObject:

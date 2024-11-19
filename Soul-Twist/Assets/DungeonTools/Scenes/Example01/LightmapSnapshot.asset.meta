@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 05d3fef456f4a234e92dae0c65ffeec6
+timeCreated: 1443175168
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Scenes/Example01/LightmapSnapshot.asset
+  uploadId: 85214

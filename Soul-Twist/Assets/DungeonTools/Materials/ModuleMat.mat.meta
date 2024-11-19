@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bb734f1a8af709447a78950804a3ef9b
+timeCreated: 1442762900
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Materials/ModuleMat.mat
+  uploadId: 85214

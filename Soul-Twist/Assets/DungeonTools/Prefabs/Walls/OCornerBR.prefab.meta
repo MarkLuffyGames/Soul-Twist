@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 14601ab8dcd5a744297f7d0fac1c6cb2
+timeCreated: 1442688631
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Prefabs/Walls/OCornerBR.prefab
+  uploadId: 85214

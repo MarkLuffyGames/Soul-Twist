@@ -9,6 +9,9 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+	"last_search.66F56946" = "p: t:Material a:assets"
+	"OpenInspectorPreview.66F56946" = "0"
+	"currentGroup.66F56946" = "asset"
 }
 providers = {
 	asset = {
@@ -65,6 +68,15 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"p: t:Material a:Assets"
+	"p: t:Material"
+	"p: t:Material dir=\"folder name\""
+	"p: t:Material dir=\"\""
+	"p: t:Material dir=Materi"
+	"p: t:texture"
+	"p: mater"
+	"p:"
+	"p: Mater"
 ]
 searchItemFavorites = [
 ]

@@ -14,6 +14,7 @@ public class Item : ScriptableObject
     [SerializeField] private Vector3 objectRotation;
     [SerializeField] private ObjectType objectType;
     [SerializeField] private AttackType attackType;
+    [SerializeField] private int attackNumber;
 
     //Stats
     [SerializeField] private int attack;
@@ -30,6 +31,7 @@ public class Item : ScriptableObject
     public Vector3 ObjectRotation => objectRotation;
     public ObjectType ObjectType => objectType;
     public AttackType AttackType => attackType;
+    public int AttackNumber => attackNumber;    
     public int Attack => attack;
     public int Defense => defense;
     public int SpAttack => spAttack;

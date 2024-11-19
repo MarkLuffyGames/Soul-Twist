@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using Unity.Netcode;
 using UnityEngine;
@@ -59,9 +60,12 @@ public class PlayerController : NetworkBehaviour
     private bool sprint;
     public bool canMove = true;
     public bool canAttack = true;
+    public bool canBlock = false;
+
+    public GameObject target;
 
     private float _speed;
-    private float _targetRotation = 0.0f;
+    private float _targetDirection = 0.0f;
     private float _rotationVelocity;
     private float _verticalVelocity;
     private float _terminalVelocity = -53.0f;
@@ -112,6 +116,8 @@ public class PlayerController : NetworkBehaviour
         Move();
     }
 
+    public Vector2 _targetDirectionAnimation;
+    public Vector2 _directionAnimation;
     private void Move()
     {
         moveValue = moveAction.ReadValue<Vector2>();
@@ -125,6 +131,9 @@ public class PlayerController : NetworkBehaviour
         if (moveValue == Vector2.zero)
         {
             targetSpeed = 0.0f;
+
+            _targetDirectionAnimation = Vector2.zero;
+            _directionAnimation = Vector2.zero;
         }
 
         //Guarda la magnitud de la velocidad del CharacterController.
@@ -151,10 +160,37 @@ public class PlayerController : NetworkBehaviour
         Vector3 moveDir = new Vector3(moveValue.x, 0, moveValue.y);
 
         // Si hay una entrada de movimiento, gire al jugador cuando el jugador se esté moviendo
-        if (moveValue != Vector2.zero)
+        if (moveValue != Vector2.zero && target == null)
         {
-            _targetRotation = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg +
-                              mainCamera.transform.eulerAngles.y;
+            _targetDirection = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg +
+                                  mainCamera.transform.eulerAngles.y;
+
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetDirection, ref _rotationVelocity,
+                RotationSmoothTime);
+
+            // Girar a la dirección de entrada de la cara en relación con la posición de la cámara
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+        }
+        else if(target != null)
+        {
+
+            if (moveValue != Vector2.zero)
+            {
+                _targetDirection = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg +
+                                  mainCamera.transform.eulerAngles.y;
+
+                float angle = Vector3.SignedAngle(transform.forward, moveDir, Vector3.up) * Mathf.Deg2Rad;
+
+                // Calcular el Vector2 a partir del ángulo
+                _targetDirectionAnimation = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+                _directionAnimation.x = Mathf.Lerp(_directionAnimation.x, _targetDirectionAnimation.x, Time.deltaTime * SpeedChangeRate);
+                _directionAnimation.y = Mathf.Lerp(_directionAnimation.y, _targetDirectionAnimation.y, Time.deltaTime * SpeedChangeRate);
+            }
+
+            Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
+            var _targetRotation = Mathf.Atan2(directionToTarget.x, directionToTarget.z) * Mathf.Rad2Deg;
+
             float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                 RotationSmoothTime);
 
@@ -162,7 +198,7 @@ public class PlayerController : NetworkBehaviour
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
-        Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+        Vector3 targetDirection = Quaternion.Euler(0.0f, _targetDirection, 0.0f) * Vector3.forward;
 
         // Mover el jugador
         if (_characterController.enabled)
@@ -172,7 +208,17 @@ public class PlayerController : NetworkBehaviour
         }
 
         // Actualizar Animator si se usa el personaje
-        _animator.SetFloat("Speed", _speed);
+        if(target == null)
+        {
+            _animator.SetBool("Target", false);
+            _animator.SetFloat("Speed", _speed);
+        }
+        else
+        {
+            _animator.SetBool("Target", true);
+            _animator.SetFloat("RotationX", _directionAnimation.x);
+            _animator.SetFloat("RotationY", _directionAnimation.y);
+        }
     }
 
     private void JumpAndGravity()
@@ -257,5 +303,7 @@ public class PlayerController : NetworkBehaviour
     {
         canMove = true;
     }
+
+    
 }
 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e57641148b84fb14ca1513db97137800
+timeCreated: 1442688626
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Prefabs/Walls/OCornerTR.prefab
+  uploadId: 85214

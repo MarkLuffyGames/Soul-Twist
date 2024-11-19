@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7078343367490535031}
   - component: {fileID: 3131705000319266373}
+  - component: {fileID: 2995379571800960432}
   - component: {fileID: 5190487480983238034}
   - component: {fileID: 7745735002582450831}
   m_Layer: 3
@@ -49,12 +50,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 1.8, z: 0.2}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.34510028, y: 1.1414838, z: 0.105458945}
+  m_Center: {x: -0.016961902, y: 0.8383316, z: 0.0019745082}
+--- !u!114 &2995379571800960432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7485620933177394952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656ccf42d3559754c9b65833d2310ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &5190487480983238034
 MeshFilter:
   m_ObjectHideFlags: 0

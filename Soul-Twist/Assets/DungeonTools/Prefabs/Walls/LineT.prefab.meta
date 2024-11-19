@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1fed59b29af1cfc4f86a38afcdc96414
+timeCreated: 1442688635
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Prefabs/Walls/LineT.prefab
+  uploadId: 85214

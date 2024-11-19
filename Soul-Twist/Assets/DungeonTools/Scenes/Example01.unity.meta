@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f1aa46fa36b53164ca97a639632f14c7
+timeCreated: 1443174723
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Scenes/Example01.unity
+  uploadId: 85214

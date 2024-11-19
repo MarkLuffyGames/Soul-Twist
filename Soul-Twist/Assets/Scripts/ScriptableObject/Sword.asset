@@ -21,6 +21,7 @@ MonoBehaviour:
   objectRotation: {x: 0, y: 0, z: 0}
   objectType: 0
   attackType: 1
+  attackNumber: 4
   attack: 10
   defense: 0
   spAttack: 0

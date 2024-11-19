@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 73b951167a4f87143a773bd234a88a60
+timeCreated: 1442776192
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Prefabs/FloorPlate.prefab
+  uploadId: 85214

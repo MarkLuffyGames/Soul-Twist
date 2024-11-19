@@ -18,6 +18,8 @@ public class Interact : NetworkBehaviour
 
     private InputAction interactAction;
 
+    private CollectableItem itemToCollect;
+
     private void Start()
     {
         if (!IsOwner) return;
@@ -78,7 +80,6 @@ public class Interact : NetworkBehaviour
         {
             uI.HideCollectButton();
             uI.ShowCollectableItemUi(collectable);
-            //Animacion de recoger objetos.
         }
     }
 
@@ -136,7 +137,13 @@ public class Interact : NetworkBehaviour
 
     public void TryGetItem(CollectableItem item)
     {
-        CollectItemRpc(OwnerClientId, item.NetworkObject);
+        itemToCollect = item;
+        _animator.SetTrigger("PickUp");
+    }
+
+    private void OnPickUp(AnimationEvent animationEvent)
+    {
+        CollectItemRpc(OwnerClientId, itemToCollect.NetworkObject);
     }
 
     [Rpc(SendTo.Server)]

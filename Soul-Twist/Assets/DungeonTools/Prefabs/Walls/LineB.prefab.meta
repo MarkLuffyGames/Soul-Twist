@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c176cf22d920131479bc7413f52893bd
+timeCreated: 1442688643
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 46732
+  packageName: Dungeon Tools
+  packageVersion: 1.0
+  assetPath: Assets/DungeonTools/Prefabs/Walls/LineB.prefab
+  uploadId: 85214
